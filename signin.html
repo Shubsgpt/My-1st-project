@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        .heading {
+            color: #05659e;
+            font-family: fantasy;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #eef5db;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #4f6367;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-list li a:hover,
+        .nav-list li a:focus {
+            color: #ffc107;
+            outline: none;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1 1 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            background-color: #ffca28;
+            outline: none;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        /* Sign in form styles */
+        .sign-in-form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sign-in-form h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus {
+            border-color: #05659e;
+            outline: none;
+            box-shadow: 0 0 5px rgba(5, 101, 158, 0.5);
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover,
+        .form-group button:focus {
+            background-color: #444;
+            outline: none;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover,
+        .form-footer a:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">SUDO CREATOR's</h1>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="#" aria-label="Home">Home</a></li>
+            <li><a href="#" aria-label="About">About</a></li>
+            <li><a href="#" aria-label="Sale">Sale</a></li>
+            <li><a href="#" aria-label="Products">Products</a></li>
+            <li><a href="#" aria-label="Make your own">Make your own</a></li>
+            <li><a href="#" aria-label="Services">Services</a></li>
+            <li><a href="#" aria-label="Contact">Contact</a></li>
+            <li><a href="cart.html" aria-label="Cart">Cart</a></li>
+        </ul>
+        <div class="button-group">
+            <button class="btn" aria-label="Sign In">Sign In</button>
+            <button class="btn" aria-label="Sign Up">Sign Up</button>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="sign-in-form">
+            <h2>Sign In</h2>
+            <form action="/submit-signin" method="post" novalidate>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Sign In</button>
+                </div>
+            </form>
+            <div class="form-footer">
+                <a href="#" aria-label="Forgot Password">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

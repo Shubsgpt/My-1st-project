@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Items Example</title>
+    <style>
+        /* Navbar styles */
+        .heading {
+            color: #05659e;
+            font-family: fantasy;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #eef5db;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 0;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .heading:hover {
+            color: #fff;
+            background-color: #05659e;
+        }
+
+        .navbar {
+            background-color: #4f6367;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-list li a:hover {
+            color: #ffc107;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1 1 auto;
+        }
+
+        .btn:hover {
+            background-color: #ffca28;
+        }
+
+        .search-container {
+            text-align: center;
+            padding-top: 20px;
+            border: none;
+        }
+
+        .search-box {
+            display: inline-block;
+        }
+
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .search-button,
+        .reset-icon {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-button:hover,
+        .reset-icon:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        /* Shopping items styles */
+        .shopping-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .shopping-item {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .shopping-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .item-price {
+            color: #b12704;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .item-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .item-button {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .cart-button {
+            background-color: #05659e;
+            color: #fff;
+        }
+
+        .cart-button:hover {
+            background-color: #034c73;
+        }
+
+        .buy-button {
+            background-color: #05659e;
+            color: #fff;
+        }
+
+        .buy-button:hover {
+            background-color: #034c73;
+        }
+        .shopping-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .btn {
+                padding: 8px 10px;
+                font-size: 14px;
+                margin-left: 5px;
+            }
+
+            .item-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .item-button {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="heading">SUDO CREATOR's</h1>
+        <nav class="navbar" role="navigation">
+            <ul class="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Make your own</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li> <!-- Link to cart page -->
+            </ul>
+            <div class="button-group">
+                <button class="btn">Sign In</button>
+                <button class="btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+    <div class="search-container">
+        <form class="search-box" action="/search" method="GET">
+            <input type="text" class="search-input" name="query" placeholder="Search..." aria-label="Search">
+            <button type="submit" class="search-button">Search</button>
+            <button type="reset" class="reset-icon">Reset</button>
+        </form>
+    </div>
+    <main class="content">
+        <div class="shopping-container" role="list">
+            <div class="shopping-item" role="listitem">
+                <img src="C:\Users\Shubh\Downloads\zebronics 6999.jpg" alt="Zebronics PC">
+                <div class="item-title">Intel core i3 "LGA 1155 Socket Performance Processor"</div>
+                <div class="item-price">₹8999</div>
+                <div class="item-description">
+                    Intel i3 LGA 1155 Socket Performance Processor, 8GB RAM, 256GB SSD<br>
+                    Ideal for basic computing, coding, home, and official purposes
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="C:\Users\Shubh\OneDrive\Desktop\Sudo creators\pictures\Screenshot 2024-07-31 200101.png" alt="Laptop">
+                <div class="item-title">Intel i5 "LGA 1155 Socket, Performance Processor"</div>
+                <div class="item-price">₹14999</div>
+                <div class="item-description">
+                    Intel i5 "LGA 1155 Socket, Performance Processor, 16GB RAM, 512GB SSD "RX 550 DDR5 4 GB Graphics Card"<br>
+                    Perfect for mid gaming and professional work
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="C:\Users\Shubh\Downloads\Screenshot 2024-07-31 125351.png" alt="Smartphone">
+                <div class="item-title">Intel i5 "LGA 1155 Socket, Performance Processor, 16GB RAM, 512GB SSD </div>
+                <div class="item-price">₹10999</div>
+                <div class="item-description">
+                    <br>
+                    
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="C:\Users\Shubh\OneDrive\Desktop\Sudo creators\pictures\Screenshot 2024-07-31 125053.png" alt="Smartwatch">
+                <div class="item-title">Smartwatch</div>
+                <div class="item-price">$199.99</div>
+                <div class="item-description">
+                    Heart rate monitor, GPS, Waterproof<br>
+                    Perfect for fitness and daily activity tracking
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="C:\Users\Shubh\OneDrive\Desktop\Sudo creators\pictures\acer.png" alt="Headphones">
+                <div class="item-title">Acer EK220Q 21.5 Inch (54.61 cm) Full HD (1920x1080)</div>
+                <div class="item-price">₹5,199</div>
+                <div class="item-description">
+                    Acer EK220Q 21.5 Inch (54.61 cm) Full HD (1920x1080) Pixels VA Panel LCD Monitor with LED Back Light I 1 MS VRB, 100Hz Refresh<br>
+                    Ideal for music and calls
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="/mnt/data/blender.jpg" alt="Blender">
+                <div class="item-title">Kitchen Blender</div>
+                <div class="item-price">$89.99</div>
+                <div class="item-description">
+                    1500W, 1.5L Jar, Multiple Speed Settings<br>
+                    Perfect for smoothies and food preparation
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="/mnt/data/tablet.jpg" alt="Tablet">
+                <div class="item-title">Latest Tablet</div>
+                <div class="item-price">$299.99</div>
+                <div class="item-description">
+                    10.5" Display, 64GB Storage, Stylus Included<br>
+                    Ideal for entertainment and productivity
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="/mnt/data/speaker.jpg" alt="Speaker">
+                <div class="item-title">Bluetooth Speaker</div>
+                <div class="item-price">$49.99</div>
+                <div class="item-description">
+                    Portable, 10 hours battery life, Water-resistant<br>
+                    Perfect for outdoor activities
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="/mnt/data/fitness-tracker.jpg" alt="Fitness Tracker">
+                <div class="item-title">Fitness Tracker</div>
+                <div class="item-price">$59.99</div>
+                <div class="item-description">
+                    Heart rate monitor, Sleep tracking, Waterproof<br>
+                    Ideal for fitness enthusiasts
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+            <div class="shopping-item" role="listitem">
+                <img src="/mnt/data/air-fryer.jpg" alt="Air Fryer">
+                <div class="item-title">Air Fryer</div>
+                <div class="item-price">$129.99</div>
+                <div class="item-description">
+                    5.8QT Capacity, Digital Touchscreen, Multiple Cooking Functions<br>
+                    Perfect for healthy cooking
+                </div>
+                <div class="item-buttons">
+                    <button class="item-button cart-button">Add to Cart</button>
+                    <button class="item-button buy-button">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

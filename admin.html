@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product Upload</title>
+    <style>
+        .heading {
+            color: #05659e;
+            font-family: fantasy;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #eef5db;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 0;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .heading:hover {
+            color: #fff;
+            background-color: #05659e;
+        }
+
+        .navbar {
+            background-color: #4f6367;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-list li a:hover {
+            color: #ffc107;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1 1 auto;
+        }
+
+        .btn:hover {
+            background-color: #ffca28;
+        }
+
+        .form-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-box {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-box input[type="file"],
+        .form-box input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4f6367;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #3b4a4d;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .product-item {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .item-price {
+            color: #b12704;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="heading">Admin Product Upload</h1>
+        <nav class="navbar" role="navigation">
+            <ul class="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Make your own</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li> <!-- Link to cart page -->
+            </ul>
+            <div class="button-group">
+                <button class="btn">Sign In</button>
+                <button class="btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+    <div class="form-container">
+        <form class="form-box" id="uploadForm">
+            <input type="file" id="productImage" accept="image/*" required>
+            <input type="text" id="productName" placeholder="Product Name" required>
+            <input type="text" id="productPrice" placeholder="Product Price" required>
+            <input type="text" id="productDescription" placeholder="Product Description" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+    <main class="content">
+        <div class="product-container" id="productContainer" role="list">
+            <!-- Dynamically added products will appear here -->
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productImage = document.getElementById('productImage').files[0];
+            const productName = document.getElementById('productName').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const productDescription = document.getElementById('productDescription').value;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const productContainer = document.getElementById('productContainer');
+
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                productItem.appendChild(img);
+
+                const title = document.createElement('div');
+                title.classList.add('item-title');
+                title.innerText = productName;
+                productItem.appendChild(title);
+
+                const price = document.createElement('div');
+                price.classList.add('item-price');
+                price.innerText = `$${productPrice}`;
+                productItem.appendChild(price);
+
+                const description = document.createElement('div');
+                description.innerText = productDescription;
+                productItem.appendChild(description);
+
+                productContainer.appendChild(productItem);
+            };
+
+            reader.readAsDataURL(productImage);
+        });
+    </script>
+</body>
+</html>
